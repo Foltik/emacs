@@ -234,8 +234,7 @@ cr_create_surface_from_pix_containers (Emacs_Pix_Container pimg,
       mask->data = NULL;
     }
   surface = cairo_image_surface_create_for_data ((unsigned char *) pimg->data,
-						 (mask ? CAIRO_FORMAT_ARGB32
-						  : CAIRO_FORMAT_RGB24),
+						 CAIRO_FORMAT_ARGB32,
 						 pimg->width, pimg->height,
 						 pimg->bytes_per_line);
   static const cairo_user_data_key_t key;
@@ -9236,6 +9235,7 @@ imagemagick_load_image (struct frame *f, struct image *img,
     PixelSetRed   (bg_wand, (double) bgcolor.red   / 65535);
     PixelSetGreen (bg_wand, (double) bgcolor.green / 65535);
     PixelSetBlue  (bg_wand, (double) bgcolor.blue  / 65535);
+    PixelSetAlpha (bg_wand, (double) 0.0);
   }
 
   compute_image_size (MagickGetImageWidth (image_wand),
