@@ -1,4 +1,4 @@
 #!/bin/bash
-make -j12
+make -j$(nproc)
 sudo make install
 sudo rm /usr/share/applications/emacs*
